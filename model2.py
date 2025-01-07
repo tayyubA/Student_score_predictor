@@ -65,7 +65,7 @@ y_pred = model.predict(X_test)
 
 # Evaluate the model
 mae = mean_absolute_error(y_test, y_pred)
-print("Mean Absolute Erro:", mae)
+print("Mean Absolute Error:", mae)
 
 
 

@@ -28,4 +28,4 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.Student_score_predictor }}  # Hugging Face Token stored in GitHub secrets
         run: |
-          git push --force https://noahgift:${HF_TOKEN}@huggingface.co/spaces/tayyubGX/Student_score_predictor master
+          git push --force https://noahgift:${HF_TOKEN}@huggingface.co/spaces/tayyubGX/Student_score_predictor main

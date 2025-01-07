@@ -2,7 +2,7 @@ name: Sync to Hugging Face hub
 
 on:
   push:
-    branches: [master]
+    branches: [master]  # Update with your default branch
 
   # To run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -16,6 +16,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Set up Git LFS
+      - name: Set up Git LFS
+        run: |
+          git lfs install
+
       # Set up Hugging Face remote
       - name: Add remote
         env:
@@ -28,4 +33,4 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.Student_score_predictor }}  # Hugging Face Token stored in GitHub secrets
         run: |
-          git push --force https://noahgift:${HF_TOKEN}@huggingface.co/spaces/tayyubGX/Student_score_predictor master
+          git push --force https://noahgift:${HF_TOKEN}@huggingface.co/spaces/tayyubGX/Student_score_predictor master  # Update 'main' to 'master' or your default branch name

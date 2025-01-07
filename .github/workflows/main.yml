@@ -1,0 +1,31 @@
+name: Sync to Hugging Face hub
+
+on:
+  push:
+    branches: [main]
+
+  # to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the code from the repository
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      # Set up Hugging Face remote
+      - name: Add remote
+        env:
+          Student_score_predictor: ${{ secrets.Student_score_predictor }}  # Hugging Face Token stored in GitHub secrets
+        run: |
+          git remote add space https://noahgift:${HF}@huggingface.co/spaces/tayyubGX/Student_score_predictor
+
+      # Push code to Hugging Face Space
+      - name: Push to hub
+        env:
+          HF: ${{ secrets.Student_score_predictor }}  # Hugging Face Token stored in GitHub secrets
+        run: |
+          git push --force https://noahgift:${HF}@huggingface.co/spaces/tayyubGX/Student_score_predictor main
